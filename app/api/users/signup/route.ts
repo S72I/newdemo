@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         return NextResponse.json(
-            { error: "An unexpected error occurred" },
+            { error: (error as Error).message },
             { status: 500 }
         );
     }
