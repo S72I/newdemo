@@ -1,10 +1,10 @@
 import { updateCourse } from "@/server/controllers/courses.controller";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params;
         const courseData = await request.json();
-        const id = params.id;
 
         const result = await updateCourse(request, id, courseData);
 
